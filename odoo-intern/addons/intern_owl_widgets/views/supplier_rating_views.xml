@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Dùng widget sao cho 3 field điểm trên form đánh giá NCC -->
+    <record id="view_supplier_rating_form_stars" model="ir.ui.view">
+        <field name="name">supplier.rating.form.stars</field>
+        <field name="model">supplier.rating</field>
+        <field name="inherit_id" ref="intern_supplier_rating.view_supplier_rating_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='quality_score']" position="attributes">
+                <attribute name="widget">intern_star_rating</attribute>
+            </xpath>
+            <xpath expr="//field[@name='delivery_score']" position="attributes">
+                <attribute name="widget">intern_star_rating</attribute>
+            </xpath>
+            <xpath expr="//field[@name='price_score']" position="attributes">
+                <attribute name="widget">intern_star_rating</attribute>
+            </xpath>
+        </field>
+    </record>
+</odoo>

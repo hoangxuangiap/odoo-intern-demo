@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="action_intern_dashboard" model="ir.actions.client">
+        <field name="name">Intern Dashboard</field>
+        <field name="tag">intern_owl_widgets.dashboard</field>
+    </record>
+    <menuitem id="menu_intern_dashboard_root" name="Intern Dashboard"
+              action="action_intern_dashboard" sequence="1" groups="base.group_user"
+              web_icon="base,static/description/icon.png"/>
+</odoo>

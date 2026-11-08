@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_functional_setup_wizard_form" model="ir.ui.view">
+        <field name="name">functional.setup.wizard.form</field>
+        <field name="model">functional.setup.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Minh An Setup (Phần B)">
+                <p class="text-muted">
+                    Chạy theo thứ tự B0 → B1 → B2 → B3 → B4 → B5. Mỗi bước chạy lại an toàn (không tạo trùng).
+                    Chạy "Tất cả" mất vài phút.
+                </p>
+                <group><field name="scope"/></group>
+                <field name="log" nolabel="1" placeholder="Kết quả chạy sẽ hiện ở đây..."
+                       style="font-family: monospace; min-height: 320px;"/>
+                <footer>
+                    <button name="action_run" type="object" string="Chạy" class="btn-primary"/>
+                    <button string="Đóng" special="cancel" class="btn-secondary"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+    <record id="action_functional_setup_wizard" model="ir.actions.act_window">
+        <field name="name">Minh An Setup</field>
+        <field name="res_model">functional.setup.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+    <menuitem id="menu_functional_setup" name="Minh An Setup" parent="base.menu_custom"
+              action="action_functional_setup_wizard" sequence="98" groups="base.group_system"/>
+</odoo>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+    <t t-name="intern_owl_widgets.Dashboard">
+        <div class="o_intern_dashboard">
+            <h2 class="mb-4">Intern Dashboard</h2>
+            <div t-if="state.loading" class="text-muted">Loading...</div>
+            <div t-else="" class="row g-3">
+                <div class="col-12 col-md-4">
+                    <div class="o_intern_card" t-on-click="openSales">
+                        <div class="text-muted">Sales today (<t t-out="state.ordersToday"/> orders)</div>
+                        <div class="o_intern_value" t-out="formatMoney(state.salesToday)"/>
+                    </div>
+                </div>
+                <div class="col-12 col-md-4">
+                    <div class="o_intern_card" t-on-click="openPurchases">
+                        <div class="text-muted">POs waiting for approval</div>
+                        <div class="o_intern_value" t-out="state.poToApprove"/>
+                    </div>
+                </div>
+                <div class="col-12 col-md-4">
+                    <div class="o_intern_card" t-on-click="openPickings">
+                        <div class="text-muted">Pending stock transfers</div>
+                        <div class="o_intern_value" t-out="state.pickingsPending"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </t>
+</templates>

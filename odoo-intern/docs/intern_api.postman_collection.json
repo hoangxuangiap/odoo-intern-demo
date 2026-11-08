@@ -1,0 +1,114 @@
+{
+  "info": {
+    "name": "Intern API (Odoo 19)",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "http://localhost:8069"
+    },
+    {
+      "key": "api_key",
+      "value": "PASTE_YOUR_API_KEY"
+    }
+  ],
+  "item": [
+    {
+      "name": "Get stock by product & warehouse",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer {{api_key}}"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"jsonrpc\": \"2.0\",\n  \"method\": \"call\",\n  \"params\": {\n    \"default_code\": \"LAPTOP-DELL\",\n    \"warehouse_code\": \"WH\"\n  }\n}"
+        },
+        "url": {
+          "raw": "{{base_url}}/intern/api/v1/stock",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "intern",
+            "api",
+            "v1",
+            "stock"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Create sale order",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer {{api_key}}"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"jsonrpc\": \"2.0\",\n  \"method\": \"call\",\n  \"params\": {\n    \"partner_ref\": \"KH001\",\n    \"external_ref\": \"WEB-0001\",\n    \"confirm\": false,\n    \"lines\": [\n      {\n        \"default_code\": \"LAPTOP-DELL\",\n        \"qty\": 2,\n        \"price_unit\": 22000000\n      }\n    ]\n  }\n}"
+        },
+        "url": {
+          "raw": "{{base_url}}/intern/api/v1/sale_order",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "intern",
+            "api",
+            "v1",
+            "sale_order"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Delivery status",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer {{api_key}}"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"jsonrpc\": \"2.0\",\n  \"method\": \"call\",\n  \"params\": {\n    \"order_name\": \"S00001\"\n  }\n}"
+        },
+        "url": {
+          "raw": "{{base_url}}/intern/api/v1/delivery_status",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "intern",
+            "api",
+            "v1",
+            "delivery_status"
+          ]
+        }
+      }
+    }
+  ]
+}

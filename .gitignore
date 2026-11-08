@@ -1,0 +1,30 @@
+﻿# Python
+__pycache__/
+*.py[cod]
+*.pyo
+
+# Virtual environment
+.venv/
+venv/
+env/
+
+# Environment and sensitive configuration
+.env
+.env.*
+odoo.conf
+
+# Logs
+*.log
+
+# Database backups
+backups/
+*.dump
+*.backup
+
+# IDE
+.idea/
+.vscode/
+
+# OS
+.DS_Store
+Thumbs.db

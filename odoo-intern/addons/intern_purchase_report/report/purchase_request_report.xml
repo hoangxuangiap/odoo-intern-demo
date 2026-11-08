@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="action_report_purchase_request" model="ir.actions.report">
+        <field name="name">Phiếu đề nghị mua hàng</field>
+        <field name="model">purchase.order</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">intern_purchase_report.report_purchase_request</field>
+        <field name="report_file">intern_purchase_report.report_purchase_request</field>
+        <field name="print_report_name">'De nghi mua hang - %s' % (object.name)</field>
+        <field name="binding_model_id" ref="purchase.model_purchase_order"/>
+        <field name="binding_type">report</field>
+    </record>
+
+    <template id="report_purchase_request">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="intern_purchase_report.report_purchase_request_document"/>
+            </t>
+        </t>
+    </template>
+
+    <template id="report_purchase_request_document">
+        <t t-call="web.external_layout">
+            <t t-set="o" t-value="o.with_context(lang=o.partner_id.lang or o.env.lang)"/>
+            <div class="page">
+                <h2 class="text-center mb-1">PHIẾU ĐỀ NGHỊ MUA HÀNG</h2>
+                <p class="text-center">
+                    Số: <strong t-field="o.name"/> – Ngày:
+                    <span t-field="o.date_order" t-options='{"widget": "date"}'/>
+                </p>
+
+                <table class="table table-sm table-borderless mt-3">
+                    <tr><td style="width:22%"><strong>Nhà cung cấp:</strong></td><td><span t-field="o.partner_id.name"/></td></tr>
+                    <tr><td><strong>Địa chỉ:</strong></td><td><span t-out="o.partner_id.contact_address"/></td></tr>
+                    <tr><td><strong>Mã số thuế:</strong></td><td><span t-field="o.partner_id.vat"/></td></tr>
+                    <tr><td><strong>Điện thoại:</strong></td><td><span t-field="o.partner_id.phone"/></td></tr>
+                    <tr><td><strong>Người đề nghị:</strong></td><td><span t-field="o.user_id.name"/></td></tr>
+                </table>
+
+                <table class="table table-sm table-bordered">
+                    <thead>
+                        <tr class="text-center">
+                            <th style="width:6%">STT</th>
+                            <th>Tên hàng hóa</th>
+                            <th style="width:10%">ĐVT</th>
+                            <th style="width:12%">Số lượng</th>
+                            <th style="width:16%">Đơn giá</th>
+                            <th style="width:18%">Thành tiền</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <t t-set="lines" t-value="o.order_line.filtered(lambda l: not l.display_type)"/>
+                        <tr t-foreach="lines" t-as="line">
+                            <td class="text-center"><t t-out="line_index + 1"/></td>
+                            <td><span t-field="line.name"/></td>
+                            <td class="text-center"><span t-out="line.product_id.uom_id.name"/></td>
+                            <td class="text-end"><span t-field="line.product_qty"/></td>
+                            <td class="text-end"><span t-field="line.price_unit"/></td>
+                            <td class="text-end"><span t-field="line.price_subtotal"/></td>
+                        </tr>
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td colspan="5" class="text-end"><strong>Thuế</strong></td>
+                            <td class="text-end"><span t-field="o.amount_tax"/></td>
+                        </tr>
+                        <tr>
+                            <td colspan="5" class="text-end"><strong>Tổng cộng</strong></td>
+                            <td class="text-end"><strong t-field="o.amount_total"/></td>
+                        </tr>
+                    </tfoot>
+                </table>
+
+                <p>
+                    <strong>Tổng tiền bằng chữ: </strong>
+                    <em t-out="o.env['vn.amount.words'].amount_to_words(o.amount_total, o.currency_id)"/>
+                </p>
+
+                <table class="table table-borderless text-center mt-5" style="page-break-inside: avoid;">
+                    <tr>
+                        <td style="width:25%"><strong>Người đề nghị</strong><br/><i>(Ký, họ tên)</i></td>
+                        <td style="width:25%"><strong>Trưởng phòng mua</strong><br/><i>(Ký, họ tên)</i></td>
+                        <td style="width:25%"><strong>Kế toán trưởng</strong><br/><i>(Ký, họ tên)</i></td>
+                        <td style="width:25%"><strong>Giám đốc</strong><br/><i>(Ký, họ tên, đóng dấu)</i></td>
+                    </tr>
+                    <tr><td style="height:90px" colspan="4"></td></tr>
+                </table>
+            </div>
+        </t>
+    </template>
+</odoo>

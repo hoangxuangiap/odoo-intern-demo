@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="res_config_settings_view_form_inherit_approval" model="ir.ui.view">
+        <field name="name">res.config.settings.view.form.inherit.intern.approval</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="purchase.res_config_settings_view_form_purchase"/>
+        <field name="arch" type="xml">
+            <xpath expr="//app[@name='purchase']" position="inside">
+                <block title="Multi-level PO Approval" name="intern_po_approval_block">
+                    <setting string="Department Head approval from"
+                             help="Orders with a total from this amount (company currency) need a Purchase Department Head's approval.">
+                        <field name="purchase_manager_approval_amount"/>
+                    </setting>
+                    <setting string="Director approval above"
+                             help="Orders with a total above this amount (company currency) need a Director's approval.">
+                        <field name="purchase_director_approval_amount"/>
+                    </setting>
+                </block>
+            </xpath>
+        </field>
+    </record>
+</odoo>

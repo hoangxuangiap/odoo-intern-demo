@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="708" height="616" font-family="Arial, sans-serif" font-size="13">
+<defs><marker id="a" markerWidth="10" markerHeight="8" refX="9" refY="4" orient="auto"><path d="M0,0 L10,4 L0,8 z" fill="#555"/></marker></defs>
+<rect width="100%" height="100%" fill="white"/><text x="30" y="36" font-size="20" font-weight="bold" fill="#1b6ca8">Luồng chứng từ KHO (HN &amp; HCM)</text>
+<text x="30" y="78" font-size="12" fill="#888">Nhập kho (2 bước)</text>
+<rect x="30" y="86" width="170" height="54" rx="8" fill="#dbeafe" stroke="#444"/>
+<text x="115.0" y="108" text-anchor="middle">NCC</text>
+<rect x="246" y="86" width="170" height="54" rx="8" fill="#dcfce7" stroke="#444"/>
+<text x="331.0" y="108" text-anchor="middle">HN/Input</text>
+<line x1="202" y1="113.0" x2="244" y2="113.0" stroke="#555" stroke-width="2" marker-end="url(#a)"/>
+<rect x="462" y="86" width="170" height="54" rx="8" fill="#dcfce7" stroke="#444"/>
+<text x="547.0" y="108" text-anchor="middle">HN/Stock</text>
+<text x="547.0" y="124" text-anchor="middle">→ Khu A / Khu B</text>
+<text x="547.0" y="140" text-anchor="middle">(Putaway)</text>
+<line x1="418" y1="113.0" x2="460" y2="113.0" stroke="#555" stroke-width="2" marker-end="url(#a)"/>
+<text x="30" y="202" font-size="12" fill="#888">Xuất kho (2 bước)</text>
+<rect x="30" y="210" width="170" height="54" rx="8" fill="#dcfce7" stroke="#444"/>
+<text x="115.0" y="232" text-anchor="middle">HN/Stock</text>
+<rect x="246" y="210" width="170" height="54" rx="8" fill="#dcfce7" stroke="#444"/>
+<text x="331.0" y="232" text-anchor="middle">HN/Output</text>
+<line x1="202" y1="237.0" x2="244" y2="237.0" stroke="#555" stroke-width="2" marker-end="url(#a)"/>
+<rect x="462" y="210" width="170" height="54" rx="8" fill="#dbeafe" stroke="#444"/>
+<text x="547.0" y="232" text-anchor="middle">Khách hàng</text>
+<line x1="418" y1="237.0" x2="460" y2="237.0" stroke="#555" stroke-width="2" marker-end="url(#a)"/>
+<text x="30" y="326" font-size="12" fill="#888">Chuyển nội bộ</text>
+<rect x="30" y="334" width="170" height="54" rx="8" fill="#dcfce7" stroke="#444"/>
+<text x="115.0" y="356" text-anchor="middle">HN/Stock</text>
+<rect x="246" y="334" width="170" height="54" rx="8" fill="#dcfce7" stroke="#444"/>
+<text x="331.0" y="356" text-anchor="middle">HN/INT</text>
+<text x="331.0" y="372" text-anchor="middle">(Internal Transfer)</text>
+<line x1="202" y1="361.0" x2="244" y2="361.0" stroke="#555" stroke-width="2" marker-end="url(#a)"/>
+<rect x="462" y="334" width="170" height="54" rx="8" fill="#dcfce7" stroke="#444"/>
+<text x="547.0" y="356" text-anchor="middle">HCM/Stock</text>
+<line x1="418" y1="361.0" x2="460" y2="361.0" stroke="#555" stroke-width="2" marker-end="url(#a)"/>
+<text x="30" y="450" font-size="12" fill="#888">Kiểm kê &amp; tái đặt hàng</text>
+<rect x="30" y="458" width="170" height="54" rx="8" fill="#dcfce7" stroke="#444"/>
+<text x="115.0" y="480" text-anchor="middle">Physical Inventory</text>
+<text x="115.0" y="496" text-anchor="middle">(đếm thực tế)</text>
+<rect x="246" y="458" width="170" height="54" rx="8" fill="#fef3c7" stroke="#444"/>
+<text x="331.0" y="480" text-anchor="middle">Điều chỉnh tồn</text>
+<text x="331.0" y="496" text-anchor="middle">+ bút toán chênh lệch</text>
+<line x1="202" y1="485.0" x2="244" y2="485.0" stroke="#555" stroke-width="2" marker-end="url(#a)"/>
+<rect x="462" y="458" width="170" height="54" rx="8" fill="#dbeafe" stroke="#444"/>
+<text x="547.0" y="480" text-anchor="middle">Min/Max → Scheduler</text>
+<text x="547.0" y="496" text-anchor="middle">→ RFQ tự sinh</text>
+<line x1="418" y1="485.0" x2="460" y2="485.0" stroke="#555" stroke-width="2" marker-end="url(#a)"/>
+<text x="30" y="602" font-size="12" fill="#666">Mọi dịch chuyển đều là stock.move: Moves History là sổ cái của kho.</text>
+</svg>

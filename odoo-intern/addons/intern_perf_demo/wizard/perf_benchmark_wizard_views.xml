@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_perf_benchmark_wizard_form" model="ir.ui.view">
+        <field name="name">perf.benchmark.wizard.form</field>
+        <field name="model">perf.benchmark.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Performance Lab">
+                <group>
+                    <field name="partner_count"/>
+                    <field name="orders_per_partner"/>
+                </group>
+                <field name="result" nolabel="1" placeholder="Results appear here..."
+                       style="font-family: monospace; min-height: 160px;"/>
+                <footer>
+                    <button name="action_generate_data" type="object" string="1. Generate sample data"/>
+                    <button name="action_run_benchmark" type="object" string="2. Run benchmark" class="btn-primary"/>
+                    <button string="Close" special="cancel" class="btn-secondary"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+    <record id="action_perf_benchmark_wizard" model="ir.actions.act_window">
+        <field name="name">Performance Lab</field>
+        <field name="res_model">perf.benchmark.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+    <menuitem id="menu_perf_benchmark" name="Performance Lab" parent="base.menu_custom"
+              action="action_perf_benchmark_wizard" sequence="99" groups="base.group_system"/>
+</odoo>

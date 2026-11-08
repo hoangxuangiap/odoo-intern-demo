@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+    <!-- Nhân viên bán hàng chỉ thấy hoa hồng của mình -->
+    <record id="rule_commission_own" model="ir.rule">
+        <field name="name">Commission: salesperson sees own</field>
+        <field name="model_id" ref="model_sale_commission"/>
+        <field name="domain_force">[('user_id', '=', user.id)]</field>
+        <field name="groups" eval="[(4, ref('sales_team.group_sale_salesman'))]"/>
+    </record>
+    <!-- Quản lý thấy tất cả -->
+    <record id="rule_commission_manager" model="ir.rule">
+        <field name="name">Commission: manager sees all</field>
+        <field name="model_id" ref="model_sale_commission"/>
+        <field name="domain_force">[(1, '=', 1)]</field>
+        <field name="groups" eval="[(4, ref('sales_team.group_sale_manager'))]"/>
+    </record>
+</odoo>

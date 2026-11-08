@@ -1,0 +1,164 @@
+# Vietnamese translation for intern_purchase_approval (bản khởi đầu - nên Export lại từ Odoo)
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 19.0\n"
+"Language: vi\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#. module: intern_purchase_approval
+#: model:ir.model.fields.selection,name:intern_purchase_approval.selection__purchase_order__approval_level__none
+msgid "No approval needed"
+msgstr "Không cần duyệt"
+
+#. module: intern_purchase_approval
+#: model:ir.model.fields.selection,name:intern_purchase_approval.selection__purchase_order__approval_level__manager
+msgid "Purchase Department Head"
+msgstr "Trưởng phòng mua"
+
+#. module: intern_purchase_approval
+#: model:ir.model.fields.selection,name:intern_purchase_approval.selection__purchase_order__approval_level__director
+msgid "Director"
+msgstr "Giám đốc"
+
+#. module: intern_purchase_approval
+#: model:ir.model.fields,field_description:intern_purchase_approval.field_purchase_order__approval_level
+msgid "Required Approval"
+msgstr "Cấp duyệt yêu cầu"
+
+#. module: intern_purchase_approval
+#: model:ir.model.fields,field_description:intern_purchase_approval.field_purchase_order__can_approve
+msgid "Can Current User Approve"
+msgstr "Người dùng hiện tại được duyệt"
+
+#. module: intern_purchase_approval
+#: model:ir.model.fields,field_description:intern_purchase_approval.field_res_config_settings__purchase_manager_approval_amount
+msgid "Department Head approval from"
+msgstr "Trưởng phòng duyệt từ mức"
+
+#. module: intern_purchase_approval
+#: model:ir.model.fields,field_description:intern_purchase_approval.field_res_config_settings__purchase_director_approval_amount
+msgid "Director approval above"
+msgstr "Giám đốc duyệt khi vượt"
+
+#. module: intern_purchase_approval
+#: model:ir.model.fields,field_description:intern_purchase_approval.field_purchase_order_reject_wizard__reason
+msgid "Reason"
+msgstr "Lý do"
+
+#. module: intern_purchase_approval
+#: model:ir.model.fields,field_description:intern_purchase_approval.field_purchase_order_reject_wizard__order_id
+msgid "Purchase Order"
+msgstr "Đơn mua hàng"
+
+#. module: intern_purchase_approval
+#: code:addons/intern_purchase_approval/models/purchase_order.py:0
+msgid "You are not allowed to approve %(order)s (%(amount)s). Required approver: %(level)s."
+msgstr "Bạn không có quyền duyệt %(order)s (%(amount)s). Cấp duyệt yêu cầu: %(level)s."
+
+#. module: intern_purchase_approval
+#: code:addons/intern_purchase_approval/models/purchase_order.py:0
+msgid "Order approved"
+msgstr "Đơn hàng đã được duyệt"
+
+#. module: intern_purchase_approval
+#: code:addons/intern_purchase_approval/models/purchase_order.py:0
+msgid "Approve purchase order"
+msgstr "Duyệt đơn mua hàng"
+
+#. module: intern_purchase_approval
+#: code:addons/intern_purchase_approval/models/purchase_order.py:0
+msgid "%(order)s (%(amount)s) is waiting for your approval."
+msgstr "%(order)s (%(amount)s) đang chờ bạn duyệt."
+
+#. module: intern_purchase_approval
+#: code:addons/intern_purchase_approval/models/purchase_order.py:0
+msgid "Reject Purchase Order"
+msgstr "Từ chối đơn mua hàng"
+
+#. module: intern_purchase_approval
+#: code:addons/intern_purchase_approval/models/purchase_order.py:0
+msgid "Only orders waiting for approval can be rejected."
+msgstr "Chỉ có thể từ chối đơn đang chờ duyệt."
+
+#. module: intern_purchase_approval
+#: code:addons/intern_purchase_approval/models/purchase_order.py:0
+msgid "You are not allowed to reject %s."
+msgstr "Bạn không có quyền từ chối %s."
+
+#. module: intern_purchase_approval
+#: code:addons/intern_purchase_approval/models/purchase_order.py:0
+msgid "Purchase order rejected"
+msgstr "Đơn mua hàng bị từ chối"
+
+#. module: intern_purchase_approval
+#: code:addons/intern_purchase_approval/models/purchase_order.py:0
+msgid "Purchase order %s was rejected"
+msgstr "Đơn mua hàng %s bị từ chối"
+
+#. module: intern_purchase_approval
+#: code:addons/intern_purchase_approval/wizard/purchase_order_reject_wizard.py:0
+msgid "Please enter a reason for the rejection."
+msgstr "Vui lòng nhập lý do từ chối."
+
+#. module: intern_purchase_approval
+#: code:addons/intern_purchase_approval/models/res_config_settings.py:0
+msgid "Approval thresholds must be positive."
+msgstr "Các ngưỡng duyệt phải là số dương."
+
+#. module: intern_purchase_approval
+#: code:addons/intern_purchase_approval/models/res_config_settings.py:0
+msgid "The Director threshold must be greater than the Department Head threshold."
+msgstr "Ngưỡng của Giám đốc phải lớn hơn ngưỡng của Trưởng phòng."
+
+#. module: intern_purchase_approval
+#: model_terms:ir.ui.view,arch_db:intern_purchase_approval.purchase_order_form_inherit_approval
+msgid "Approve"
+msgstr "Duyệt"
+
+#. module: intern_purchase_approval
+#: model_terms:ir.ui.view,arch_db:intern_purchase_approval.purchase_order_form_inherit_approval
+msgid "Reject"
+msgstr "Từ chối"
+
+#. module: intern_purchase_approval
+#: model_terms:ir.ui.view,arch_db:intern_purchase_approval.purchase_order_form_inherit_approval
+msgid "Approval required:"
+msgstr "Cần duyệt bởi:"
+
+#. module: intern_purchase_approval
+#: model_terms:ir.ui.view,arch_db:intern_purchase_approval.purchase_order_reject_wizard_form
+msgid "Confirm Rejection"
+msgstr "Xác nhận từ chối"
+
+#. module: intern_purchase_approval
+#: model_terms:ir.ui.view,arch_db:intern_purchase_approval.purchase_order_reject_wizard_form
+msgid "Cancel"
+msgstr "Hủy"
+
+#. module: intern_purchase_approval
+#: model_terms:ir.ui.view,arch_db:intern_purchase_approval.purchase_order_reject_wizard_form
+msgid "Why is this order rejected?"
+msgstr "Vì sao từ chối đơn này?"
+
+#. module: intern_purchase_approval
+#: model:ir.actions.act_window,name:intern_purchase_approval.action_purchase_order_to_approve
+#: model:ir.ui.menu,name:intern_purchase_approval.menu_purchase_order_to_approve
+msgid "Orders to Approve"
+msgstr "Đơn chờ duyệt"
+
+#. module: intern_purchase_approval
+#: model_terms:ir.ui.view,arch_db:intern_purchase_approval.res_config_settings_view_form_inherit_approval
+msgid "Multi-level PO Approval"
+msgstr "Phê duyệt PO nhiều cấp"
+
+#. module: intern_purchase_approval
+#: model_terms:ir.ui.view,arch_db:intern_purchase_approval.res_config_settings_view_form_inherit_approval
+msgid "Orders with a total from this amount (company currency) need a Purchase Department Head's approval."
+msgstr "Đơn có tổng tiền từ mức này (theo tiền tệ công ty) cần Trưởng phòng mua duyệt."
+
+#. module: intern_purchase_approval
+#: model_terms:ir.ui.view,arch_db:intern_purchase_approval.res_config_settings_view_form_inherit_approval
+msgid "Orders with a total above this amount (company currency) need a Director's approval."
+msgstr "Đơn có tổng tiền vượt mức này (theo tiền tệ công ty) cần Giám đốc duyệt."

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- noupdate=1: nâng cấp module sẽ không ghi đè giá trị admin đã chỉnh -->
+    <data noupdate="1">
+        <record id="config_param_manager_amount" model="ir.config_parameter">
+            <field name="key">intern_purchase_approval.manager_amount</field>
+            <field name="value">50000000</field>
+        </record>
+        <record id="config_param_director_amount" model="ir.config_parameter">
+            <field name="key">intern_purchase_approval.director_amount</field>
+            <field name="value">200000000</field>
+        </record>
+    </data>
+
+    <!-- Loại activity riêng, để đóng đúng activity "duyệt PO" mà không đụng việc khác -->
+    <record id="mail_activity_type_po_approval" model="mail.activity.type">
+        <field name="name">PO Approval</field>
+        <field name="summary">Approve purchase order</field>
+        <field name="icon">fa-check-square-o</field>
+    </record>
+</odoo>

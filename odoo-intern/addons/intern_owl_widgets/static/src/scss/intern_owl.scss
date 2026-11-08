@@ -1,0 +1,14 @@
+.o_intern_star_rating {
+    .o_intern_star { font-size: 1.4rem; color: #f5a623; margin-right: 2px; }
+    .o_intern_star_clickable { cursor: pointer; }
+    .o_intern_star_clickable:hover { transform: scale(1.15); }
+}
+.o_intern_dashboard {
+    padding: 24px;
+    .o_intern_card {
+        cursor: pointer; border-radius: 12px; padding: 24px; text-align: center;
+        box-shadow: 0 1px 4px rgba(0, 0, 0, .15); background: var(--o-view-background-color, #fff);
+        &:hover { box-shadow: 0 4px 12px rgba(0, 0, 0, .25); }
+        .o_intern_value { font-size: 2.2rem; font-weight: 700; }
+    }
+}

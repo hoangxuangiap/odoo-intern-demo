@@ -1,0 +1,41 @@
+services:
+  db:
+    image: postgres:16
+    environment:
+      POSTGRES_USER: odoo
+      POSTGRES_PASSWORD: odoo
+      POSTGRES_DB: postgres
+    volumes:
+      - db-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U odoo"]
+      interval: 5s
+      retries: 20
+
+  odoo:
+    build: .
+    depends_on:
+      db:
+        condition: service_healthy
+    ports:
+      - "8069:8069"
+    environment:
+      ODOO_CONF: /etc/odoo/odoo.conf
+      PGHOST: db
+      PGUSER: odoo
+      PGPASSWORD: odoo
+      SETUP_INTERN: "1"       # tạo DB 'intern' (Phần A)
+      SETUP_FUNCTIONAL: "1"   # tạo DB 'minhan' (Phần B)
+      # WITHOUT_DEMO: "1"     # bỏ comment nếu không muốn dữ liệu demo (DB intern)
+      # LOAD_LANG: vi_VN      # bỏ comment để nạp Tiếng Việt
+    volumes:
+      - ./addons:/mnt/extra-addons
+      - ./docker/odoo.conf:/etc/odoo/odoo.conf:ro
+      - ./scripts:/opt/scripts:ro
+      - ./reports:/reports
+      - odoo-data:/var/lib/odoo
+    command: ["bash", "/opt/scripts/docker-entrypoint.sh"]
+
+volumes:
+  db-data:
+  odoo-data:

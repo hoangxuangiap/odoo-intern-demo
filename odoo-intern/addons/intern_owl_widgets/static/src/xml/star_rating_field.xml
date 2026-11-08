@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+    <t t-name="intern_owl_widgets.StarRatingField">
+        <span class="o_intern_star_rating" t-on-mouseleave="onLeave">
+            <t t-foreach="stars" t-as="star" t-key="star">
+                <i t-att-class="starClass(star)"
+                   t-on-click="() => this.onClick(star)"
+                   t-on-mouseenter="() => this.onEnter(star)"/>
+            </t>
+        </span>
+    </t>
+</templates>

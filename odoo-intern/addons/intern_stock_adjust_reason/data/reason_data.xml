@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+    <record id="reason_damaged" model="stock.inventory.reason"><field name="name">Damaged</field></record>
+    <record id="reason_lost" model="stock.inventory.reason"><field name="name">Lost</field></record>
+    <record id="reason_expired" model="stock.inventory.reason"><field name="name">Expired</field></record>
+    <record id="reason_count_error" model="stock.inventory.reason"><field name="name">Counting error</field></record>
+    <record id="reason_found" model="stock.inventory.reason"><field name="name">Found</field></record>
+</odoo>

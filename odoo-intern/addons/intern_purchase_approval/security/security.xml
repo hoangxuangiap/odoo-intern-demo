@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Trưởng phòng mua: kế thừa quyền Purchase User -->
+    <record id="group_purchase_dept_head" model="res.groups">
+        <field name="name">Purchase Department Head</field>
+        <field name="implied_ids" eval="[(4, ref('purchase.group_purchase_user'))]"/>
+    </record>
+
+    <!-- Giám đốc: có mọi quyền của Trưởng phòng mua (implied) + duyệt PO lớn -->
+    <record id="group_purchase_director" model="res.groups">
+        <field name="name">Purchase Director</field>
+        <field name="implied_ids" eval="[(4, ref('group_purchase_dept_head'))]"/>
+    </record>
+
+    <!-- Để tài khoản Administrator duyệt được khi thử nghiệm -->
+    <record id="base.group_system" model="res.groups">
+        <field name="implied_ids" eval="[(4, ref('group_purchase_director'))]"/>
+    </record>
+</odoo>

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="demo_budget_all" model="purchase.budget">
+        <field name="category_id" ref="product.product_category_all"/>
+        <field name="amount">500000000</field>
+    </record>
+</odoo>

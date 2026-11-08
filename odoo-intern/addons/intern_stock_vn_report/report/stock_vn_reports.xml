@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="action_report_phieu_nhap_kho" model="ir.actions.report">
+        <field name="name">Phiếu nhập kho (01-VT)</field>
+        <field name="model">stock.picking</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">intern_stock_vn_report.report_phieu_nhap_kho</field>
+        <field name="report_file">intern_stock_vn_report.report_phieu_nhap_kho</field>
+        <field name="print_report_name">'Phieu nhap kho - %s' % (object.name)</field>
+        <field name="binding_model_id" ref="stock.model_stock_picking"/>
+        <field name="binding_type">report</field>
+    </record>
+    <record id="action_report_phieu_xuat_kho" model="ir.actions.report">
+        <field name="name">Phiếu xuất kho (02-VT)</field>
+        <field name="model">stock.picking</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">intern_stock_vn_report.report_phieu_xuat_kho</field>
+        <field name="report_file">intern_stock_vn_report.report_phieu_xuat_kho</field>
+        <field name="print_report_name">'Phieu xuat kho - %s' % (object.name)</field>
+        <field name="binding_model_id" ref="stock.model_stock_picking"/>
+        <field name="binding_type">report</field>
+    </record>
+
+    <!-- Phiếu nhập: chỉ in cho phiếu loại Receipts -->
+    <template id="report_phieu_nhap_kho">
+        <t t-call="web.html_container">
+            <t t-set="selected" t-value="docs.filtered(lambda d: d.picking_type_code == 'incoming')"/>
+            <t t-if="not selected"><div class="page"><p>Báo cáo này chỉ áp dụng cho phiếu nhập kho (Receipts).</p></div></t>
+            <t t-foreach="selected" t-as="o">
+                <t t-set="form_code" t-value="'01-VT'"/>
+                <t t-set="title" t-value="'PHIẾU NHẬP KHO'"/>
+                <t t-set="loc_label" t-value="'Nhập tại kho'"/>
+                <t t-set="loc_name" t-value="o.location_dest_id.complete_name"/>
+                <t t-set="sign4" t-value="'Người giao hàng'"/>
+                <t t-call="intern_stock_vn_report.vn_picking_document"/>
+            </t>
+        </t>
+    </template>
+
+    <!-- Phiếu xuất: chỉ in cho phiếu loại Delivery -->
+    <template id="report_phieu_xuat_kho">
+        <t t-call="web.html_container">
+            <t t-set="selected" t-value="docs.filtered(lambda d: d.picking_type_code == 'outgoing')"/>
+            <t t-if="not selected"><div class="page"><p>Báo cáo này chỉ áp dụng cho phiếu xuất kho (Delivery).</p></div></t>
+            <t t-foreach="selected" t-as="o">
+                <t t-set="form_code" t-value="'02-VT'"/>
+                <t t-set="title" t-value="'PHIẾU XUẤT KHO'"/>
+                <t t-set="loc_label" t-value="'Xuất tại kho'"/>
+                <t t-set="loc_name" t-value="o.location_id.complete_name"/>
+                <t t-set="sign4" t-value="'Người nhận hàng'"/>
+                <t t-call="intern_stock_vn_report.vn_picking_document"/>
+            </t>
+        </t>
+    </template>
+
+    <!-- Thân phiếu dùng chung cho 01-VT và 02-VT -->
+    <template id="vn_picking_document">
+        <t t-call="web.external_layout">
+            <div class="page">
+                <div class="row">
+                    <div class="col-8">
+                        <div><strong>Đơn vị: </strong><span t-field="o.company_id.name"/></div>
+                        <div><strong>Địa chỉ: </strong><span t-out="o.company_id.partner_id.contact_address"/></div>
+                    </div>
+                    <div class="col-4 text-center">
+                        <strong>Mẫu số <t t-out="form_code"/></strong><br/>
+                        <small>(Ban hành theo Thông tư số 200/2014/TT-BTC<br/>ngày 22/12/2014 của Bộ Tài chính)</small>
+                    </div>
+                </div>
+
+                <h3 class="text-center mt-3 mb-0" t-out="title"/>
+                <p class="text-center">
+                    Ngày <span t-out="(o.date_done or o.scheduled_date or o.create_date).strftime('%d')"/>
+                    tháng <span t-out="(o.date_done or o.scheduled_date or o.create_date).strftime('%m')"/>
+                    năm <span t-out="(o.date_done or o.scheduled_date or o.create_date).strftime('%Y')"/>
+                    &#160;&#8211;&#160; Số: <strong t-field="o.name"/>
+                </p>
+
+                <div><strong>Đối tác: </strong><span t-field="o.partner_id.name"/></div>
+                <div><strong>Diễn giải / Chứng từ gốc: </strong><span t-field="o.origin"/></div>
+                <div><strong><t t-out="loc_label"/>: </strong><span t-out="loc_name"/></div>
+
+                <table class="table table-sm table-bordered mt-3">
+                    <thead>
+                        <tr class="text-center">
+                            <th rowspan="2">STT</th>
+                            <th rowspan="2">Tên, nhãn hiệu, quy cách hàng hóa</th>
+                            <th rowspan="2">Mã số</th>
+                            <th rowspan="2">ĐVT</th>
+                            <th colspan="2">Số lượng</th>
+                            <th rowspan="2">Đơn giá</th>
+                            <th rowspan="2">Thành tiền</th>
+                        </tr>
+                        <tr class="text-center"><th>Yêu cầu</th><th>Thực tế</th></tr>
+                    </thead>
+                    <tbody>
+                        <t t-set="total" t-value="0.0"/>
+                        <tr t-foreach="o.move_ids" t-as="move">
+                            <t t-set="line_total" t-value="move.quantity * move.product_id.standard_price"/>
+                            <t t-set="total" t-value="total + line_total"/>
+                            <td class="text-center"><t t-out="move_index + 1"/></td>
+                            <td><span t-out="move.product_id.display_name"/></td>
+                            <td class="text-center"><span t-out="move.product_id.default_code"/></td>
+                            <td class="text-center"><span t-out="move.product_id.uom_id.name"/></td>
+                            <td class="text-end"><span t-out="move.product_uom_qty"/></td>
+                            <td class="text-end"><span t-out="move.quantity"/></td>
+                            <td class="text-end"><span t-out="'{:,.0f}'.format(move.product_id.standard_price)"/></td>
+                            <td class="text-end"><span t-out="'{:,.0f}'.format(line_total)"/></td>
+                        </tr>
+                        <tr>
+                            <td colspan="7" class="text-end"><strong>Cộng</strong></td>
+                            <td class="text-end"><strong t-out="'{:,.0f}'.format(total)"/></td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <p><strong>Tổng số tiền (viết bằng chữ): </strong>
+                    <em t-out="o.env['vn.amount.words'].amount_to_words(total)"/></p>
+                <p><strong>Số chứng từ gốc kèm theo: </strong>………………………</p>
+
+                <table class="table table-borderless text-center mt-4" style="page-break-inside: avoid;">
+                    <tr>
+                        <td style="width:20%"><strong>Người lập phiếu</strong><br/><i>(Ký, họ tên)</i></td>
+                        <td style="width:20%"><strong t-out="sign4"/><br/><i>(Ký, họ tên)</i></td>
+                        <td style="width:20%"><strong>Thủ kho</strong><br/><i>(Ký, họ tên)</i></td>
+                        <td style="width:20%"><strong>Kế toán trưởng</strong><br/><i>(Ký, họ tên)</i></td>
+                        <td style="width:20%"><strong>Giám đốc</strong><br/><i>(Ký, họ tên, đóng dấu)</i></td>
+                    </tr>
+                    <tr><td style="height:80px" colspan="5"></td></tr>
+                </table>
+            </div>
+        </t>
+    </template>
+</odoo>

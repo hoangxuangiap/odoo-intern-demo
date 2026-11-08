@@ -1,0 +1,6 @@
+odoo/
+venv/
+*.pyc
+__pycache__/
+odoo-local.conf
+filestore/

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="demo_vendor" model="res.partner">
+        <field name="name">Demo Vendor - Minh An Supplier</field>
+        <field name="supplier_rank">1</field>
+    </record>
+
+    <record id="demo_product" model="product.product">
+        <field name="name">Demo Office Equipment</field>
+        <field name="list_price">3500000</field>
+        <field name="standard_price">3000000</field>
+    </record>
+
+    <!-- PO 30 triệu: xác nhận thẳng -->
+    <record id="demo_po_small" model="purchase.order">
+        <field name="partner_id" ref="demo_vendor"/>
+    </record>
+    <record id="demo_po_small_line" model="purchase.order.line">
+        <field name="order_id" ref="demo_po_small"/>
+        <field name="product_id" ref="demo_product"/>
+        <field name="product_qty">10</field>
+        <field name="price_unit">3000000</field>
+    </record>
+
+    <!-- PO 120 triệu: cần Trưởng phòng mua -->
+    <record id="demo_po_medium" model="purchase.order">
+        <field name="partner_id" ref="demo_vendor"/>
+    </record>
+    <record id="demo_po_medium_line" model="purchase.order.line">
+        <field name="order_id" ref="demo_po_medium"/>
+        <field name="product_id" ref="demo_product"/>
+        <field name="product_qty">40</field>
+        <field name="price_unit">3000000</field>
+    </record>
+
+    <!-- PO 300 triệu: cần Giám đốc -->
+    <record id="demo_po_large" model="purchase.order">
+        <field name="partner_id" ref="demo_vendor"/>
+    </record>
+    <record id="demo_po_large_line" model="purchase.order.line">
+        <field name="order_id" ref="demo_po_large"/>
+        <field name="product_id" ref="demo_product"/>
+        <field name="product_qty">100</field>
+        <field name="price_unit">3000000</field>
+    </record>
+</odoo>

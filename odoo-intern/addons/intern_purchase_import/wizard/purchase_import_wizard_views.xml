@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_purchase_import_wizard_form" model="ir.ui.view">
+        <field name="name">purchase.import.wizard.form</field>
+        <field name="model">purchase.import.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Import Purchase Orders">
+                <field name="state" invisible="1"/>
+                <div class="alert alert-danger" role="alert" invisible="state != 'error'">
+                    Nothing was imported. Fix the rows below and upload the file again.
+                </div>
+                <group>
+                    <field name="error_log" invisible="state != 'error'" nolabel="1" colspan="2"/>
+                    <field name="file" filename="filename"/>
+                    <field name="filename" invisible="1"/>
+                </group>
+                <p class="text-muted">
+                    Columns (row 1 = header): <b>Vendor code</b> (partner Reference), <b>Product code</b> (Internal Reference),
+                    <b>Quantity</b>, <b>Unit price</b> (optional). One PO is created per vendor.
+                </p>
+                <footer>
+                    <button name="action_import" type="object" string="Import" class="btn-primary" data-hotkey="q"/>
+                    <button string="Cancel" special="cancel" class="btn-secondary" data-hotkey="x"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_purchase_import_wizard" model="ir.actions.act_window">
+        <field name="name">Import POs from Excel</field>
+        <field name="res_model">purchase.import.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+    <menuitem id="menu_purchase_import_wizard" name="Import POs from Excel"
+              parent="purchase.menu_procurement_management"
+              action="action_purchase_import_wizard" sequence="90"
+              groups="purchase.group_purchase_user"/>
+</odoo>

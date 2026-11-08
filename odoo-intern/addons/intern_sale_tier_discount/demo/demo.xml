@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="demo_product_tier" model="product.template">
+        <field name="name">Giấy A4 Double A (demo bậc chiết khấu)</field>
+        <field name="list_price">80000</field>
+        <field name="sale_ok" eval="True"/>
+    </record>
+    <record id="demo_tier_10" model="product.discount.tier">
+        <field name="product_tmpl_id" ref="demo_product_tier"/>
+        <field name="min_qty">10</field>
+        <field name="discount">5</field>
+    </record>
+    <record id="demo_tier_50" model="product.discount.tier">
+        <field name="product_tmpl_id" ref="demo_product_tier"/>
+        <field name="min_qty">50</field>
+        <field name="discount">10</field>
+    </record>
+</odoo>
